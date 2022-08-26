@@ -1,0 +1,62 @@
+{
+  "employess": [
+    {
+      "name": "sohel Rana",
+      "id": 1,
+      "joinnigDate": "02/5/2021"
+    },
+    {
+      "name": "sohel Rana",
+      "id": 1,
+      "joinnigDate": "02/5/2021"
+    },
+    {
+      "name": "sohel Rana",
+      "id": 1,
+      "joinnigDate": "02/5/2021"
+    },
+    {
+      "name": "sohel Rana",
+      "id": 1,
+      "joinnigDate": "02/5/2021"
+    }
+  ],
+  "users": [
+    {
+      "email": "m.junaidbkh2020@gmail.com",
+      "password": "12345",
+      "isAdmin": true,
+      "id": 1
+    },
+    {
+      "email": "sohel@gmail.com",
+      "password": "12345",
+      "isAdmin": false,
+      "id": 2
+    },
+    {
+      "email": "zahed@gmail.com",
+      "password": "12345",
+      "isAdmin": false,
+      "id": 3
+    },
+    {
+      "email": "mahi@gmail.com",
+      "password": "12345",
+      "isAdmin": false,
+      "id": 4
+    },
+    {
+      "email": "shuvon@gmail.com",
+      "password": "12345",
+      "isAdmin": false,
+      "id": 5
+    },
+    {
+      "email": "hossain@gmail.com",
+      "password": "12345",
+      "isAdmin": false,
+      "id": 6
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+.container {
+  overflow: hidden;
+}
+.content {
+  overflow-y: scroll;
+  height: 88vh;
+  padding: 0;
+}
+.content::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+.content::-webkit-scrollbar-thumb {
+  background-color: #2d3033;
+  border-radius: 50px;
+}
