@@ -1,25 +1,36 @@
 import styles from "../styles/login.module.css";
 import PasswordMask from "react-password-mask";
 import { useState } from "react";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import { Input, Space } from "antd";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const login = () => {
+  const { register, handleSubmit: submit, reset } = useForm();
+  const onSubmit = (data) => console.log(data);
   const [password, setPassword] = useState("");
   const [toggle, setToggle] = useState(false);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const isAdmin = false;
   const toggleHandle = () => {
     setToggle((prev) => !prev);
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (data) => {
+    console.log(data);
+
     const res = await fetch("  http://localhost:3004/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, isAdmin }),
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        isAdmin,
+      }),
     });
-    const data = await res.json();
-    console.log("data", data);
+    const result = await res.json();
+    if (result) {
+      reset();
+    }
   };
   return (
     <div className={styles.container}>
@@ -28,11 +39,27 @@ const login = () => {
           <h2>Login</h2>
           <h5 style={{ color: "white" }}>Access to our dashboard</h5>
         </div>
-        <div style={{ padding: "0px", marginBottom: "15px " }}>
+
+        <form onSubmit={submit(handleSubmit)}>
           <p
             style={{
               padding: "0px",
-              marginBottom: "2px",
+              margin: "10px 0px",
+              marginLeft: "5px",
+              fontSize: "18px",
+            }}
+          >
+            Name
+          </p>
+          <input
+            style={{ padding: "10px 6px" }}
+            className={styles.input}
+            {...register("name", { required: true })}
+          />
+          <p
+            style={{
+              padding: "0px",
+              margin: "10px 0px",
               marginLeft: "5px",
               fontSize: "18px",
             }}
@@ -40,34 +67,29 @@ const login = () => {
             Email Address
           </p>
           <input
-            onBlur={(e) => setEmail(e.target.value)}
             style={{ padding: "10px 6px" }}
             className={styles.input}
-            type="text"
+            type="email"
+            {...register("email", { required: true })}
           />
-        </div>
-        <div>
           <p
             style={{
-              marginBottom: "2px",
+              padding: "0px",
+              margin: "10px 0px",
               marginLeft: "5px",
               fontSize: "18px",
             }}
           >
             Password
           </p>
-          <div>
-            <input
-              onBlur={(e) => setPassword(e.target.value)}
-              type="password"
-              style={{ padding: "10px 6px" }}
-              className={styles.input}
-            />
-          </div>
-        </div>
-        <div className={styles.btn}>
-          <button onClick={handleSubmit}>Login</button>
-        </div>
+          <input
+            style={{ padding: "10px 6px" }}
+            className={styles.input}
+            type="password"
+            {...register("password", { required: true })}
+          />
+          <input className={styles.btn} type="submit" />
+        </form>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import profileImg from "../public/empolyee.jpg";
 import {
   FaAddressCard,
   FaUserTie,
@@ -18,6 +19,7 @@ import {
   DatabaseOutlined,
   ApartmentOutlined,
 } from "@ant-design/icons";
+import Button from "../shared/Button";
 function getItem(label, key, icon, children, type, fn) {
   return {
     key,
@@ -28,17 +30,13 @@ function getItem(label, key, icon, children, type, fn) {
     fn,
   };
 }
-const Button = ({ name, link }) => {
-  return (
-    <div style={{ display: "flex" }}>
-      <Link href={`/${link}`}>
-        <a style={{ color: "white" }}>{name}</a>
-      </Link>
-    </div>
-  );
-};
+
 export const items = [
-  getItem(<Button name="Dashboard" link="/" />, "1", <PieChartOutlined />),
+  getItem(
+    <Button name="Dashboard" link="dashboard" />,
+    "1",
+    <PieChartOutlined />
+  ),
   getItem("Option 2", "2", <DesktopOutlined />),
   getItem("Option 3", "3", <ContainerOutlined />),
   getItem("Employees", "sub1", <CodepenCircleOutlined />, [
@@ -49,60 +47,64 @@ export const items = [
       "5"
     ),
     getItem(
-      <Link href="/">
+      <Link href="/holyDays">
         <a>Holy Days</a>
       </Link>,
       "6"
     ),
     getItem(
-      <Link href="/">
+      <Link href="/leavsEmploy">
         <a>Leaves(Employee)</a>
       </Link>,
       "7"
     ),
     getItem(
-      <Link href="/">
+      <Link href="/attendence">
         <a>Attendence(Employee)</a>
       </Link>,
       "8"
     ),
     getItem(
-      <Link href="/">
+      <Link href="/timeShift">
         <a>TimeShift</a>
       </Link>,
       "9"
     ),
     getItem(
-      <Link href="/">
+      <Link href="/schedule">
         <a>Shift&Schedule</a>
       </Link>,
       "10"
     ),
     getItem(
-      <Link href="/">
+      <Link href="/overTime">
         <a>Over Time</a>
       </Link>,
       "11"
     ),
   ]),
-  getItem(<Button name="Clients" link="/" />, "12", <UsergroupAddOutlined />),
+  getItem(
+    <Button name="Clients" link="clients" />,
+    "12",
+    <UsergroupAddOutlined />
+  ),
 
   getItem("Projects", "sub2", <FaAddressCard />, [
     getItem(
-      <Link href="/">
+      <Link href="/project">
         <a>Projects</a>
       </Link>,
       "13"
     ),
-    getItem(<Button name="Clients" link="task" />, "14"),
+    getItem(<Button name="Task" link="task" />, "14"),
     getItem(
-      <Link href="/">
+      <Link href="/taskBoard">
         <a>Tasks Board</a>
       </Link>,
       "15"
     ),
     getItem(
-      <Link href="/">
+      <Link href="/lead">
         <a>Lead</a>
       </Link>,
       "16"
@@ -111,15 +113,32 @@ export const items = [
   getItem("Pages", "sub3", <ContainerOutlined />, [
     getItem("Profile", "sub4", <FaUserTie />, [
       getItem(<Button name="Clients Profile" link="allEmployees" />, "17"),
-      getItem(<Button name="Employee Profile" link="/" />, "18"),
+      getItem(<Button name="Employee Profile" link="employeProfile" />, "18"),
     ]),
     getItem("Authentication", "sub5", <FaUnlockAlt />, [
       getItem(<Button name="Login" link="login" />, "19"),
-      getItem(<Button name="Register" link="/" />, "20"),
+      getItem(<Button name="Register" link="register" />, "20"),
     ]),
   ]),
   getItem("Apps", "sub6", <FaSketch />, [
     getItem(<Button name="Chat" link="chat" />, "21"),
     getItem(<Button name="Calendar" link="calendar" />, "22"),
   ]),
+];
+
+// EMPLOYEE PROFILE DATA
+
+export const employeeProfileData = [
+  {
+    name: "Muhammad Junaid",
+    profileImg: profileImg,
+    title: "frontEndDeveloper",
+    employeeId: "00134",
+    joiningDate: "1st Jan 2022",
+    phone: "01634900664",
+    email: "m.junaidbkh@gmail.com",
+    birthDay: "02/07/1998",
+    address: "110 bahaddar Hat,chittgong",
+    gender: "MALE",
+  },
 ];

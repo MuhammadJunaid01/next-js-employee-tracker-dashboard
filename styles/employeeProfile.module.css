@@ -1,0 +1,55 @@
+.container {
+  padding: 40px 20px;
+}
+.content {
+  background-color: #16191c;
+  padding: 30px;
+  border-radius: 3px;
+}
+.data_container {
+  display: flex;
+  justify-content: space-between;
+  color: #abc4cc !important;
+  position: relative;
+}
+.profile_sec_1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  border-right: 2px dashed gray;
+  width: 50%;
+}
+.send_message {
+  width: 80%;
+  padding: 7px 15px;
+  background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
+  color: white;
+  border: none !important;
+  background-color: transparent;
+  outline: none !important;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.profileEdit {
+  position: absolute;
+  right: -22px;
+  top: -25px;
+  cursor: pointer;
+  font-size: 22px;
+}
+.input_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.input_box > input {
+  border: 1px solid gainsboro;
+  width: 50%;
+  outline: none;
+  padding: 6px 7px;
+  border-radius: 4px;
+  margin: 10px 0px;
+}
