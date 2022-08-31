@@ -1,0 +1,53 @@
+.container {
+  /* background-color: #16191c; */
+  margin-top: 20px;
+  /* padding: 6px 0px; */
+  border-radius: 5px;
+  color: white !important;
+}
+.content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-row-gap: 15px;
+  grid-column-gap: 30px;
+}
+.peronalnfo {
+  background-color: #16191c;
+  padding: 10px;
+  height: 300px;
+  width: 100%;
+  color: gainsboro !important;
+}
+.peronalnfo > h3 {
+  color: white !important;
+}
+.emerGencyContact {
+  background-color: #16191c;
+  color: gainsboro !important;
+
+  padding: 10px;
+  height: 300px;
+  width: 100%;
+}
+.bankInfo {
+  background-color: #16191c;
+  color: gainsboro !important;
+
+  padding: 10px;
+  height: 300px;
+  width: 100%;
+}
+.experience {
+  background-color: #16191c;
+  color: gainsboro !important;
+
+  padding: 10px;
+  height: 300px;
+  width: 100%;
+}
+
+@media (max-width: 648px) {
+  .content {
+    grid-template-columns: auto;
+  }
+}

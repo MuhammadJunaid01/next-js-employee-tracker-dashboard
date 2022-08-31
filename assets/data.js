@@ -20,6 +20,10 @@ import {
   ApartmentOutlined,
 } from "@ant-design/icons";
 import Button from "../shared/Button";
+import Employee from "../component/profile/Employee";
+import Projects from "../component/projects/Projects";
+import BankStateMent from "../component/bankStateMent/BankStateMent";
+import Task from "../component/task/Task";
 function getItem(label, key, icon, children, type, fn) {
   return {
     key,
@@ -37,8 +41,7 @@ export const items = [
     "1",
     <PieChartOutlined />
   ),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("Option 3", "3", <ContainerOutlined />),
+
   getItem("Employees", "sub1", <CodepenCircleOutlined />, [
     getItem(
       <Link href="/allEmployees">
@@ -140,5 +143,47 @@ export const employeeProfileData = [
     birthDay: "02/07/1998",
     address: "110 bahaddar Hat,chittgong",
     gender: "MALE",
+    profileDetails: [
+      {
+        passport: "01873263656526",
+        passportExp: "74676436",
+        phone: "+8801634900664",
+        nattionality: "Bangladeshi",
+        religion: "ISLAM",
+        maritalStatus: "unMarried",
+      },
+    ],
+    emerGencyContact: [
+      {
+        name: "jhon Doe",
+        rela: "Father",
+        phone: "879337783783",
+        scNmae: "Kelvin",
+        scRela: "Brother",
+        scPhone: "873876672786653",
+      },
+    ],
+    bankInfo: [{ bankName: "ICB BANK", acc: "8378726365263567678" }],
+    experience: [
+      {
+        first: "FronEnd Developer",
+        firstjobDate: "Jan 2013  - Dec 2018(5 years)",
+        secound: "React Developer",
+        secoundjobDate: "Jan 2018 - July 2020(2 years)",
+        third: "Full Stack Developer",
+        thirdjobDate: "July 2020 -- Present(2 years)",
+      },
+    ],
+  },
+];
+
+export const tabsData = [
+  { name: "Profile", to: "profile", comp: <Employee /> },
+  { name: "Project", to: "project", comp: <Projects /> },
+  { name: "Task", to: "task", comp: <Task /> },
+  {
+    name: "Bank & Statutory (Admin Only)",
+    to: "project",
+    comp: <BankStateMent />,
   },
 ];

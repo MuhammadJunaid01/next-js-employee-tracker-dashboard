@@ -4,32 +4,30 @@ import { Modal } from "antd";
 import { DatePicker, Space } from "antd";
 import { useForm } from "react-hook-form";
 import { FaRegEdit } from "react-icons/fa";
-import { employeeProfileData } from "../assets/data";
+import { employeeProfileData, tabsData } from "../assets/data";
 import Button from "../shared/Button";
 import Image from "next/image";
 import styles from "../styles/employeeProfile.module.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import Employee from "../component/profile/Employee";
 const employeProfile = () => {
   const [modal1Visible, setModal1Visible] = useState(false);
   const [modal2Visible, setModal2Visible] = useState(false);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-
-  const onSubmit = (data) => console.log(data);
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
+  const [comp, setComp] = useState(undefined);
+  const handleSubmitModal = () => {
+    setModal2Visible(true);
+  };
+  const handleTabs = (data) => {
+    setComp(data);
   };
   return (
     <div className={styles.container}>
       <div style={{ display: "flex" }}>
-        <Button name="Dashboard" link="" /> <span>/Profile</span>
+        <Button name="Dashboard" link="" /> <span> / Profile</span>
       </div>
       <div className={styles.content}>
-        <Row gutter={7}>
-          {employeeProfileData.map((data, index) => {
+        <Row>
+          {employeeProfileData?.map((data, index) => {
             return (
               <Col key={index} xs={24} md={24}>
                 <div className={styles.data_container}>
@@ -53,7 +51,7 @@ const employeProfile = () => {
                           lineHeight: "30px",
                         }}
                       >
-                        {data.title}
+                        {data.title.toString()}
                       </p>
                       <p
                         style={{
@@ -74,7 +72,6 @@ const employeProfile = () => {
                           fontSize: "16px",
                           lineHeight: "30px",
                         }}
-                        s
                       >
                         Date of Join:{data.joiningDate}
                       </p>
@@ -84,6 +81,7 @@ const employeProfile = () => {
                     </div>
                   </div>
                   <div
+                    className={styles.profile_sec_2}
                     style={{
                       width: "50%",
                       padding: "0px 16px",
@@ -157,10 +155,12 @@ const employeProfile = () => {
                     </p>
                   </div>
                 </div>
+
+                {/* MODAL DATA */}
                 <Modal
                   centered
                   visible={modal2Visible}
-                  onOk={() => setModal2Visible(false)}
+                  onOk={() => handleSubmitModal()}
                   onCancel={() => setModal2Visible(false)}
                 >
                   <div style={{ textAlign: "center" }}>
@@ -171,39 +171,25 @@ const employeProfile = () => {
                       height={70}
                     ></Image>
                   </div>
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className={styles.input_box}>
-                      <input {...register("name", { required: true })} />
-                      <br />
-                      {errors.name?.type === "required" && "name is required"}
-
-                      <DatePicker
-                        style={{ width: "50%" }}
-                        onChange={onChange}
-                      />
-                      <br />
-                      {errors.birthDate && (
-                        <p style={{ display: "block" }}>
-                          birth Date is required
-                        </p>
-                      )}
-                    </div>
-
-                    <input
-                      {...register("email", {
-                        required: "Email Address is required",
-                      })}
-                    />
-                    <p>{errors.mail?.message}</p>
-
-                    <input type="submit" />
-                  </form>
+                  <div className={styles.input_box}>
+                    <input type="text" />
+                  </div>
                 </Modal>
               </Col>
             );
           })}
         </Row>
       </div>
+      <div className={styles.data_tabs}>
+        {tabsData?.map((data, index) => {
+          return (
+            <div key={index} className={styles.data_tabs_btn_box}>
+              <button onClick={() => handleTabs(data.comp)}>{data.name}</button>
+            </div>
+          );
+        })}
+      </div>
+      {comp ? comp : <Employee />}
     </div>
   );
 };
