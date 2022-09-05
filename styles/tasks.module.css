@@ -1,0 +1,8 @@
+.content {
+  margin-top: 10px;
+  background-color: #16191c;
+  color: #8e8e8e !important;
+  padding: 10px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}

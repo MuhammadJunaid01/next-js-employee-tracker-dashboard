@@ -180,7 +180,7 @@ export const employeeProfileData = [
 export const tabsData = [
   { name: "Profile", to: "profile", comp: <Employee /> },
   { name: "Project", to: "project", comp: <Projects /> },
-  { name: "Task", to: "task", comp: <Task /> },
+  { name: "Task", to: "task", comp: <Task isTask={true} /> },
   {
     name: "Bank & Statutory (Admin Only)",
     to: "project",

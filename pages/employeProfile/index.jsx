@@ -4,12 +4,12 @@ import { Modal } from "antd";
 import { DatePicker, Space } from "antd";
 import { useForm } from "react-hook-form";
 import { FaRegEdit } from "react-icons/fa";
-import { employeeProfileData, tabsData } from "../assets/data";
-import Button from "../shared/Button";
+import { employeeProfileData, tabsData } from "../../assets/data";
+import Button from "../../shared/Button";
 import Image from "next/image";
-import styles from "../styles/employeeProfile.module.css";
+import styles from "../../styles/employeeProfile.module.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import Employee from "../component/profile/Employee";
+import Employee from "../../component/profile/Employee";
 const employeProfile = () => {
   const [modal1Visible, setModal1Visible] = useState(false);
   const [modal2Visible, setModal2Visible] = useState(false);
@@ -193,5 +193,13 @@ const employeProfile = () => {
     </div>
   );
 };
-
+export const getStaticProps = async () => {
+  console.log("genarating / re-genartin product list");
+  const res = await fetch("http://localhost:3004/tasks");
+  const product = await res.json();
+  return {
+    props: { product },
+    revalidate: 10,
+  };
+};
 export default employeProfile;
