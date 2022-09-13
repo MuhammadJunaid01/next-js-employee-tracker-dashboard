@@ -6,3 +6,19 @@
   background-color: #16191c;
   padding: 10px;
 }
+.taskBoard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+  color: #bbc4cc !important;
+  cursor: pointer;
+}
+.progress {
+  margin-top: 20px !important;
+  width: 30%;
+  margin: 0 auto;
+}

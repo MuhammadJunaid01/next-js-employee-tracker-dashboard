@@ -103,7 +103,13 @@
   "tasks": [
     {
       "projectName": "coinBid web application",
-      "tasks": [{ "isCompleate": false, "taksName": "Navbar Design" }],
+      "tasks": [
+        {
+          "id": 1,
+          "isCompleate": false,
+          "taksName": "Navbar Design"
+        }
+      ],
       "taskpriority": "urgent",
       "taskStart": "2022-08-28 19:40",
       "taskEndDate": "2022-09-03 19:37",
@@ -135,10 +141,17 @@
     {
       "projectName": "Project Management",
       "tasks": [
-        { "isCompleate": true, "taksName": "Navbar Design" },
-        { "isCompleate": false, "taksName": "footer Design" }
+        {
+          "id": 1,
+          "isCompleate": true,
+          "taksName": "Navbar Design"
+        },
+        {
+          "id": 2,
+          "isCompleate": false,
+          "taksName": "footer Design"
+        }
       ],
-
       "taskpriority": "normal",
       "taskStart": "2022-08-30 06:16",
       "taskEndDate": "2022-09-08 03:14",
@@ -169,21 +182,30 @@
       "totalHours": "125",
       "cost": "350",
       "dec": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis animi praesentium corrupti sit asperiores cum iusto nesciunt voluptas, libero fuga possimus neque nostrum dolore officiis repellendus, fugit quia eveniet modi corporis delectus? Dolorem voluptatibus culpa perferendis illum harum et incidunt. Quam et incidunt eaque distinctio consectetur pariatur doloremque ut excepturi itaque est debitis, commodi neque autem laudantium eos suscipit veritatis, assumenda minus velit natus sequi sed cupiditate mollitia aspernatur? Rem voluptate tempore reprehenderit, beatae commodi hic, non magnam assumenda itaque corporis tempora? Voluptatum dolore, aliquam excepturi repudiandae, aliquid totam blanditiis provident itaque voluptatem iste molestias obcaecati praesentium, eaque nihil? Similique corporis quis quo voluptatem perspiciatis, tempore eum magni modi deleniti non! Sed sint eum delectus velit tempora temporibus magnam minus!",
-
       "id": 2
     },
     {
-      "projectName": "Hospital Administration",
+      "projectName": "Project Management",
       "tasks": [
-        { "isCompleate": true, "taksName": "hero Banner Design" },
-        { "isCompleate": true, "taksName": "Doctor list Design" },
-        { "isCompleate": false, "taksName": "hero Banner Design fixed issue" },
-        { "isCompleate": false, "taksName": "Doctor list re-Design" }
+        {
+          "id": 1,
+          "isCompleate": true,
+          "taksName": "Navbar Design"
+        },
+        {
+          "id": 2,
+          "isCompleate": false,
+          "taksName": "footer Design"
+        }
       ],
-      "taskpriority": "urgent",
-      "taskStart": "2022-09-03 08:39",
-      "taskEndDate": "2022-09-14 10:38",
+      "taskpriority": "normal",
+      "taskStart": "2022-08-30 06:16",
+      "taskEndDate": "2022-09-08 03:14",
       "teamLead": [
+        {
+          "label": "Zahid",
+          "value": "zahid@gmail.com"
+        },
         {
           "label": "Sohel",
           "value": "sohel@gmail.com"
@@ -191,31 +213,46 @@
       ],
       "teamMember": [
         {
-          "label": "Junaid",
-          "value": "m.junaidbkh2020@gmail.com"
+          "label": "Sohel",
+          "value": "sohel@gmail.com"
         },
         {
-          "label": "Zahid",
-          "value": "zahid@gmail.com"
+          "label": "Ahmad",
+          "value": "ahmad@gmail.com"
         },
         {
           "label": "Mahi",
           "value": "mahi@gmail.com"
         }
       ],
-      "totalHours": "110",
-      "cost": "280",
+      "totalHours": "125",
+      "cost": "350",
       "dec": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis animi praesentium corrupti sit asperiores cum iusto nesciunt voluptas, libero fuga possimus neque nostrum dolore officiis repellendus, fugit quia eveniet modi corporis delectus? Dolorem voluptatibus culpa perferendis illum harum et incidunt. Quam et incidunt eaque distinctio consectetur pariatur doloremque ut excepturi itaque est debitis, commodi neque autem laudantium eos suscipit veritatis, assumenda minus velit natus sequi sed cupiditate mollitia aspernatur? Rem voluptate tempore reprehenderit, beatae commodi hic, non magnam assumenda itaque corporis tempora? Voluptatum dolore, aliquam excepturi repudiandae, aliquid totam blanditiis provident itaque voluptatem iste molestias obcaecati praesentium, eaque nihil? Similique corporis quis quo voluptatem perspiciatis, tempore eum magni modi deleniti non! Sed sint eum delectus velit tempora temporibus magnam minus!",
-
       "id": 3
     },
     {
       "projectName": "Video Calling App",
       "tasks": [
-        { "isCompleate": true, "taksName": "hero Banner Design" },
-        { "isCompleate": false, "taksName": "Doctor list Design" },
-        { "isCompleate": false, "taksName": "hero Banner Design fixed issue" },
-        { "isCompleate": false, "taksName": "Doctor list re-Design" }
+        {
+          "id": 1,
+          "isCompleate": true,
+          "taksName": "hero Banner Design"
+        },
+        {
+          "id": 2,
+          "isCompleate": false,
+          "taksName": "Doctor list Design"
+        },
+        {
+          "id": 3,
+          "isCompleate": false,
+          "taksName": "hero Banner Design fixed issue"
+        },
+        {
+          "id": 4,
+          "isCompleate": false,
+          "taksName": "Doctor list re-Design"
+        }
       ],
       "taskpriority": "urgent",
       "taskStart": "2022-09-15 09:39",

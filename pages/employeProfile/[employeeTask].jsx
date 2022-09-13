@@ -2,14 +2,41 @@ import { Col, Row } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import styles from "../../styles/employeeTask.module.css";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { Button, Dropdown, Menu } from "antd";
+import { useStopwatch } from "react-timer-hook";
+import { useRouter } from "next/router";
 
+function MyStopwatch({ fn }) {
+  const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
+    useStopwatch({ autoStart: false });
+  console.log("hellofn", fn());
+  return (
+    <div style={{ width: "100%" }}>
+      <div style={{ fontSize: "40px" }}>
+        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
+        <span>{seconds}</span>
+      </div>
+      <p>{isRunning ? "Running" : "Not running"}</p>
+      <button onClick={start}>Start</button>
+      <button onClick={pause}>Pause</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
 const Index = ({ data }) => {
+  console.log("hello data", data);
+  const router = useRouter();
+
   const [complete, setComplete] = useState([]);
   const [inComplete, seInComplete] = useState([]);
+  const percentage = 50;
+
   useEffect(() => {
     const inc = [];
     const comp = [];
-    data.tasks.forEach((task) => {
+    data.tasks?.forEach((task) => {
       if (task.isCompleate) {
         comp.push(task);
       } else {
@@ -19,13 +46,39 @@ const Index = ({ data }) => {
     setComplete(comp);
     seInComplete(inc);
   }, [data]);
+  const handleClick = async (item) => {
+    // console.log("item", item);
+    data.tasks.forEach(async (act) => {
+      if (act.id == item.id) {
+        console.log("hello match", act);
+        const { isCompleate, ...rest } = act;
+        isCompleate = false;
+        const res = await fetch(
+          `http://localhost:3004/tasks/${router.query.employeeTask}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(act),
+          }
+        );
+        const resdata = await res.json();
+        console.log("hello match resulrt", resdata);
+      }
+    });
+  };
+  const handleStart = (task) => {
+    console.log(task);
+  };
   return (
     <div>
+      <h1> {router.query.employeeTask}</h1>
       <Row gutter={10}>
-        <Col xs={24} md={18}>
+        <Col xs={24} md={17}>
           <div className={styles.info}>
             <h1 style={{ color: "#bbc4cc", margin: "0px 0px" }}>
-              {data.projectName}
+              {data?.projectName}
             </h1>
             <p style={{ color: "#BBC4CC", margin: "0px 0px" }}>
               {inComplete.length}
@@ -33,10 +86,10 @@ const Index = ({ data }) => {
               {complete.length}
               <span style={{ color: "#8e8e8e" }}> tasks completed </span>
             </p>
-            <p style={{ color: "#BBC4CC" }}>{data.dec}</p>
+            <p style={{ color: "#BBC4CC" }}>{data?.dec}</p>
           </div>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={7}>
           <div className={styles.details}>
             <h3 style={{ color: "#bbc4cc", margin: "0px 0px" }}>
               Project details
@@ -117,6 +170,51 @@ const Index = ({ data }) => {
                 {data.taskpriority}
               </p>
             </div>
+          </div>
+          <div
+            style={{ marginTop: "10px", color: "white" }}
+            className={styles.details}
+          >
+            <h3
+              style={{
+                color: "#bbc4cc",
+                margin: "0px 0px",
+                textAlign: "center",
+              }}
+            >
+              Task Board
+            </h3>
+            <div>
+              {inComplete.map((comp, index) => {
+                return (
+                  <div className={styles.taskBoard} key={index}>
+                    <p style={{ color: "#bbc4cc" }}>
+                      {comp.taksName.slice(0, 15)}...
+                    </p>
+                    <button
+                      onClick={() => handleStart(comp)}
+                      className={styles.btn}
+                    >
+                      start
+                    </button>
+                    <button
+                      onClick={() => handleClick(comp)}
+                      className={styles.btn}
+                    >
+                      finish
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+            <div className={styles.progress}>
+              <CircularProgressbar
+                strokeWidth={6}
+                value={percentage}
+                text={`${percentage}%`}
+              />
+            </div>
+            <MyStopwatch fn={handleStart} />
           </div>
         </Col>
       </Row>

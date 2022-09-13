@@ -2,36 +2,31 @@ import styles from "../styles/login.module.css";
 import PasswordMask from "react-password-mask";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
+import { useDispatch } from "react-redux";
+import { useAddUserMutation } from "../redux/reducers/auth";
 const login = () => {
+  const dispatch = useDispatch();
+  const [addUser, { data: user, error, isSuccess }] = useAddUserMutation();
   const { register, handleSubmit: submit, reset } = useForm();
-  const onSubmit = (data) => console.log(data);
+  // const onSubmit = (data) => console.log(data);
   const [password, setPassword] = useState("");
   const [toggle, setToggle] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const isAdmin = false;
+  const isAdmin = true;
   const toggleHandle = () => {
     setToggle((prev) => !prev);
   };
   const handleSubmit = async (data) => {
-    console.log(data);
-
-    const res = await fetch("  http://localhost:3004/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        isAdmin,
-      }),
-    });
-    const result = await res.json();
-    if (result) {
-      reset();
-    }
+    console.log("auth data", data);
+    const user = { ...data, isAdmin };
+    console.log(user);
+    addUser(user);
+    // if (user) {
+    //   reset();
+    // }
   };
+  console.log("user", user);
   return (
     <div className={styles.container}>
       <div className={styles.content}>
