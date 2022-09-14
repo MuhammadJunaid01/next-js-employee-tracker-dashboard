@@ -15,13 +15,16 @@ function MyStopwatch({ fn }) {
   return (
     <div style={{ width: "100%" }}>
       <div style={{ fontSize: "40px" }}>
-        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-        <span>{seconds}</span>
+        <span>{days}</span>:<span>{hours + 2}</span>:<span>{minutes + 50}</span>
+        :<span>{seconds}</span>
       </div>
       <p>{isRunning ? "Running" : "Not running"}</p>
-      <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={reset}>Reset</button>
+      <button className={styles.timerBtn} onClick={start}>
+        Start
+      </button>
+      <button className={styles.timerBtn} onClick={pause}>
+        Pause
+      </button>
     </div>
   );
 }

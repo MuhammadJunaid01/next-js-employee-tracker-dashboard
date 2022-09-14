@@ -4,9 +4,12 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useAddUserMutation } from "../redux/reducers/auth";
-const login = () => {
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+const Login = () => {
   const dispatch = useDispatch();
-  const [addUser, { data: user, error, isSuccess }] = useAddUserMutation();
+  const router = useRouter();
+  const [addUser, { data: userDaTa, error, isSuccess }] = useAddUserMutation();
   const { register, handleSubmit: submit, reset } = useForm();
   // const onSubmit = (data) => console.log(data);
   const [password, setPassword] = useState("");
@@ -25,8 +28,15 @@ const login = () => {
     // if (user) {
     //   reset();
     // }
+    router.push("/");
   };
-  console.log("user", user);
+  useEffect(() => {
+    if (userDaTa) {
+      localStorage.setItem("user", JSON.stringify(userDaTa));
+    }
+  }, [userDaTa]);
+  if (typeof window !== "undefined") {
+  }
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -90,4 +100,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

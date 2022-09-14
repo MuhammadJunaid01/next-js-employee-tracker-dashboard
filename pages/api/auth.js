@@ -1,7 +1,7 @@
 import connectDb from "../../utils/connectDb";
 import User from "../../utils/models/auth_model";
 
-const taskHandler = async (req, res) => {
+const authHandler = async (req, res) => {
   await connectDb();
   console.log("DB Connent Succesfull! ");
 
@@ -24,4 +24,4 @@ const taskHandler = async (req, res) => {
   }
 };
 
-export default taskHandler;
+export default authHandler;

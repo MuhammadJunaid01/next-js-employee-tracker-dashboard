@@ -22,3 +22,15 @@
   width: 30%;
   margin: 0 auto;
 }
+.timerBtn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 700;
+  background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
+}
