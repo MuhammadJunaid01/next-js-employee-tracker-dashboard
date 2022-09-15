@@ -7,11 +7,12 @@ import "react-circular-progressbar/dist/styles.css";
 import { Button, Dropdown, Menu } from "antd";
 import { useStopwatch } from "react-timer-hook";
 import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyStopwatch({ fn }) {
   const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
     useStopwatch({ autoStart: false });
-  console.log("hellofn", fn());
   return (
     <div style={{ width: "100%" }}>
       <div style={{ fontSize: "40px" }}>
@@ -74,8 +75,43 @@ const Index = ({ data }) => {
   const handleStart = (task) => {
     console.log(task);
   };
+  const handleToast = () => {
+    toast.warn("alert you are trackin.....", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+    console.log("calleddddddddddd");
+  };
+  useEffect(() => {
+    // setInterval(() => {
+    //   handleToast();
+    //   console.log("toats called");
+    // }, 1000);
+    const MINUTE_MS = 60000;
+
+    const interval = setInterval(() => {
+      handleToast();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <h1> {router.query.employeeTask}</h1>
       <Row gutter={10}>
         <Col xs={24} md={17}>

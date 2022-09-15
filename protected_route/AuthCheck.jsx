@@ -10,7 +10,7 @@ const AuthCheck = ({ children }) => {
       const userHard = JSON.parse(localStorage.getItem("user"));
       setUser(userHard);
     }
-  }, [user]);
+  }, []);
   const router = useRouter();
   // const user = false;
   if (!user) {
