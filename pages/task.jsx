@@ -4,6 +4,7 @@ import { DatePicker } from "antd";
 import styles from "../styles/task.module.css";
 import useSWR from "swr";
 import Select from "react-select";
+import { useAddTaskMutation } from "../redux/reducers/tasks/task";
 const fetcher = async () => {
   const res = await fetch(`http://localhost:3004/tasks`);
   const data = await res.json();
@@ -19,6 +20,8 @@ const { RangePicker } = DatePicker;
 const task = () => {
   const { data: task, error: taskError } = useSWR("tasks", fetcher);
   const { data: users, error: userError } = useSWR("users", usersFetcher);
+  const [addTask, { data, error: taskMutationError, isSuccess: taskSuccess }] =
+    useAddTaskMutation();
   const [modal2Visible, setModal2Visible] = useState(false);
   const [user, setUser] = useState(undefined);
   const [startDate, setStartDate] = useState("");
@@ -50,23 +53,31 @@ const task = () => {
 
   //test tree
   const handleTaskSubmit = async () => {
-    const res = await fetch("  http://localhost:3004/tasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        taskName: taskName,
-        taskpriority: priority,
-        taskStart: startDate,
-        taskEndDate: endDate,
-        teamLead: teamLead,
-        teamMember: teamMember,
-      }),
-    });
-    const data = res.json();
-    if (data) {
-      setModal2Visible(false);
-    } else {
-      alert("something Wrong!");
+    const task = {
+      projectName: taskName,
+      taskpriority: priority,
+      taskStartDate: startDate,
+      taskEndDate: endDate,
+      teamLead: teamLead,
+      teamMember: teamMember,
+    };
+    try {
+      // const res = await fetch("http://localhost:3000/api/task", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(task),
+      // });
+      // const data_res = res.json();
+
+      addTask(task);
+      if (data) {
+        setModal2Visible(false);
+      } else {
+        alert("something Wrong!");
+      }
+      alert("ooooooookkkkkkkkkk");
+    } catch (error) {
+      alert(error.message);
     }
   };
 
@@ -85,7 +96,7 @@ const task = () => {
   return (
     <div>
       <Button type="primary" onClick={() => setModal2Visible(true)}>
-        Add Task
+        Add Project
       </Button>
       <Modal
         className={styles.mdl}

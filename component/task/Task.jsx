@@ -28,7 +28,7 @@ const Task = () => {
         }
       });
       task.teamMember?.forEach((member) => {
-        if (user.email.toLowerCase() === member.value.toLowerCase()) {
+        if (user?.email?.toLowerCase() === member.value.toLowerCase()) {
           mytask.push(task);
         }
       });

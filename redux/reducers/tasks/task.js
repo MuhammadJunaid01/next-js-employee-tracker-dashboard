@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseApi } from "../../url";
 export const taskeSlice = createSlice({
   name: "task",
   initialState: {
@@ -18,6 +19,25 @@ export const taskeSlice = createSlice({
     },
   },
 });
+export const tasksApi = createApi({
+  reducerPath: "tasksApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: baseApi,
+  }),
+  endpoints: (builder) => ({
+    addTask: builder.mutation({
+      query: (body) => {
+        console.log("redux auth body log by redux", body);
+        return {
+          url: "task",
+          body: body,
+          method: "POST",
+        };
+      },
+    }),
+  }),
+});
 
 export const { taskControll } = taskeSlice.actions;
 export default taskeSlice.reducer;
+export const { useAddTaskMutation } = tasksApi;

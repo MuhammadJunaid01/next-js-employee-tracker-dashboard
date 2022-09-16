@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice } from "@reduxjs/toolkit";
 
-import { baseApi } from "../../api";
+import { baseApi } from "../../url";
 export const userSlice = createSlice({
   name: "user",
   initialState: {

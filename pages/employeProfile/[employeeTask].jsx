@@ -88,15 +88,13 @@ const Index = ({ data }) => {
     console.log("calleddddddddddd");
   };
   useEffect(() => {
-    // setInterval(() => {
-    //   handleToast();
-    //   console.log("toats called");
-    // }, 1000);
-    const MINUTE_MS = 60000;
-
-    const interval = setInterval(() => {
+    const MINUTE_MS = 300000;
+    const interval = setInterval(async () => {
       handleToast();
-    }, 10000);
+      // const res = await fetch("http://localhost:3000/api/screen");
+      // const data = res.json();
+      // console.log(data);
+    }, MINUTE_MS);
     return () => clearInterval(interval);
   }, []);
   return (
