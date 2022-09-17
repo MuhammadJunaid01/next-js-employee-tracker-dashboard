@@ -75,12 +75,12 @@ const task = () => {
       } else {
         alert("something Wrong!");
       }
-      alert("ooooooookkkkkkkkkk");
     } catch (error) {
       alert(error.message);
+      console.log(error.message);
     }
   };
-
+  console.log("taskMutationError", taskMutationError);
   const option2 = users?.map((user) => {
     return {
       label: user.name,

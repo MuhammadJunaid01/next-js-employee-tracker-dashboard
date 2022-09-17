@@ -1,10 +1,13 @@
 import connectDb from "../../utils/connectDb";
 import Timer from "tiny-timer";
 import Task from "../../utils/models/tasks_models";
+import Test from "../../utils/test";
 
 const taskHandler = async (req, res) => {
-  const timer = new Timer({ interval: 1000, stopwatch: false });
-  await connectDb;
+  const db = await connectDb;
+  if (!db) {
+    return res.send("db probleb");
+  }
   console.log("DB connent");
   if (req.method === "POST") {
     console.log("hello hitted");
@@ -18,16 +21,22 @@ const taskHandler = async (req, res) => {
     } = req.body;
     // console.log("req body", req.body);
     try {
-      const data = await Task.create({
-        projectName,
-        tasks,
-        taskStartDate,
-        taskEndDate,
-        teamLead,
-        teamMember,
+      // console.log("req body", req.body);
+
+      // const user = await Task.create({
+      //   projectName,
+      //   tasks,
+      //   taskStartDate,
+      //   taskEndDate,
+      //   teamLead,
+      //   teamMember,
+      // });
+      const g = await Test.create({
+        Name: "junaid",
+        email: "junaid@.j.com",
       });
-      console.log("data save db", data);
-      if (data) {
+      console.log("data save db", g);
+      if (g) {
         res.json("task save successfully", data);
       }
     } catch (error) {
@@ -35,11 +44,21 @@ const taskHandler = async (req, res) => {
     }
   }
   if (req.method === "GET") {
-    timer.on("tick", (ms) => console.log("tick", ms));
-    timer.on("done", () => console.log("done!"));
-    timer.on("statusChanged", (status) => console.log("status:", status));
-    timer.start(60000); // run for 5 seconds
-    res.send("hello send");
+    await connectDb;
+    // const timer = new Timer({ interval: 1000, stopwatch: false });
+    // timer.on("tick", (ms) => console.log("tick", ms));
+    // timer.on("done", () => console.log("done!"));
+    // timer.on("statusChanged", (status) => console.log("status:", status));
+    // timer.start(60000); // run for 5 seconds
+    const g = await Test.create({
+      Name: "junaid",
+      email: "junaid@.j.com",
+    });
+    console.log("data save db", g);
+    if (g) {
+      res.json("task save successfully", data);
+    }
+    res.send("hello send", g);
   }
 };
 

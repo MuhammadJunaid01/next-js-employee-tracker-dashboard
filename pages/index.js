@@ -4,6 +4,7 @@ import MainLayoute from "../layoutes/mainLayoute/MainLayoute";
 import styles from "../styles/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DashBoardAdminHome from "../component/dashboardAdminHome/dashBoardAdminHome";
 export default function Home() {
   return (
     <div>
@@ -13,6 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <MainLayoute /> */}
+      <DashBoardAdminHome />
     </div>
   );
 }

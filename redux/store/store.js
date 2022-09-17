@@ -15,6 +15,8 @@ const makeStore = () => {
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(authApi.middleware),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(tasksApi.middleware),
   });
 };
 export const wrapper = createWrapper(makeStore, { debug: true });
