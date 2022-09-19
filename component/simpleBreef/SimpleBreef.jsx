@@ -1,7 +1,7 @@
 import React from "react";
 
 const SimpleBreef = ({ Icon, title, count }) => {
-  console.log((Icon = "hello icon undifine"), title, count);
+  // console.log((Icon = "hello icon undifine"), title, count);
 
   return (
     <div
@@ -15,7 +15,20 @@ const SimpleBreef = ({ Icon, title, count }) => {
       }}
     >
       <div>
-        <p style={{ color: "white" }}>{Icon}</p>
+        <p
+          style={{
+            color: "white",
+            height: "80px",
+            width: "80px",
+            borderRadius: "50%",
+            backgroundColor: "#453323",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {<Icon />}
+        </p>
       </div>
       <div>
         <p style={{ color: "white" }}>{title}</p>
