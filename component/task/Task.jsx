@@ -5,18 +5,28 @@ import { Col, Row, Checkbox, Button } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 import { SwapRightOutlined } from "@ant-design/icons";
+/**
+ * Fetcher is a function that takes an object as an argument and returns a promise that resolves to an
+ * array of objects.
+ * @returns An object with a data property that contains an array of objects.
+ */
 const fetcher = async ({}) => {
   const res = await fetch("http://localhost:3004/tasks");
   const data = await res.json();
   return data;
 };
 const Task = () => {
+  /* A hook that is used for data fetching, setting up a subscription, or manually changing the DOM in
+React components. */
   const [checked, setChecked] = useState(true);
 
+  /* Getting the user from local storage. */
   const user = JSON.parse(localStorage.getItem("user"));
   // const user = localStorage.getItem("user");
   const { data, error } = useSWR("/tasks", fetcher);
   const [mytasks, setMyTasks] = useState([]);
+  /* A hook that is used for data fetching, setting up a subscription, or manually changing the DOM in
+ React components. */
   useEffect(() => {
     const mytask = [];
     const mylead = [];
@@ -38,9 +48,18 @@ const Task = () => {
   }, []);
   let comp = 0;
   let incomp = 0;
+  /**
+   * When the toggleChecked function is called, it will set the checked state to the opposite of what it
+   * currently is.
+   */
   const toggleChecked = () => {
     setChecked(!checked);
   };
+
+  /**
+   * OnChange is a function that takes an event as an argument and sets the state of the checkbox to the
+   * value of the event's target's checked property.
+   */
   const onChange = (e) => {
     console.log("checked = ", e.target.checked);
     setChecked(e.target.checked);
@@ -49,6 +68,7 @@ const Task = () => {
     <div className={styles.container}>
       <div>
         <Row gutter={10}>
+          /* A map function. */
           {mytasks.map((data, index) => {
             return (
               <Col xs={24} md={8} key={index}>
