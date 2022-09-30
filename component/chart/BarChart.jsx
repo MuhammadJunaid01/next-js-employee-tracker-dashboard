@@ -110,7 +110,6 @@ const data = [
 const BarChart = () => {
   return (
     <div style={{ height: "50vh", width: "100%" }}>
-      /* A heading tag. */
       <h1>hello nivo bar chart</h1>
       <ResponsiveBar
         data={data}

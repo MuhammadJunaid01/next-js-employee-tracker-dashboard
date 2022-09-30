@@ -23,7 +23,6 @@
     "next-redux-wrapper": "^7.0.5",
     "nivo": "^0.31.0",
     "node-cron": "^3.0.2",
-    "puppeteer": "^17.1.3",
     "react": "18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-countdown-circle-timer": "^3.0.9",

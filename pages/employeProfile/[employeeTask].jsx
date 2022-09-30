@@ -9,26 +9,8 @@ import { useStopwatch } from "react-timer-hook";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Timer from "../../component/timer/Timer";
 
-function MyStopwatch({ fn }) {
-  const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
-    useStopwatch({ autoStart: false });
-  return (
-    <div style={{ width: "100%" }}>
-      <div style={{ fontSize: "40px" }}>
-        <span>{days}</span>:<span>{hours + 2}</span>:<span>{minutes + 50}</span>
-        :<span>{seconds}</span>
-      </div>
-      <p>{isRunning ? "Running" : "Not running"}</p>
-      <button className={styles.timerBtn} onClick={start}>
-        Start
-      </button>
-      <button className={styles.timerBtn} onClick={pause}>
-        Pause
-      </button>
-    </div>
-  );
-}
 const Index = ({ data }) => {
   console.log("hello data", data);
   const router = useRouter();
@@ -251,7 +233,7 @@ const Index = ({ data }) => {
                 text={`${percentage}%`}
               />
             </div>
-            <MyStopwatch fn={handleStart} />
+            <Timer />
           </div>
         </Col>
       </Row>
