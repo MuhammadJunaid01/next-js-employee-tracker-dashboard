@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import userSlice, { authApi } from "../reducers/auth";
 import collapseSlice from "../reducers/collapse/collapse";
-import task, { tasksApi } from "../reducers/tasks/task";
+import task, { tasksApi } from "../reducers/project/project";
 
 const makeStore = () => {
   return configureStore({

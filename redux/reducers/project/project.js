@@ -25,11 +25,11 @@ export const tasksApi = createApi({
     baseUrl: baseApi,
   }),
   endpoints: (builder) => ({
-    addTask: builder.mutation({
+    addProject: builder.mutation({
       query: (body) => {
         console.log("redux auth body log by redux", body);
         return {
-          url: "task",
+          url: "project",
           body: body,
           method: "POST",
         };
@@ -40,4 +40,4 @@ export const tasksApi = createApi({
 
 export const { taskControll } = taskeSlice.actions;
 export default taskeSlice.reducer;
-export const { useAddTaskMutation } = tasksApi;
+export const { useAddProjectMutation } = tasksApi;

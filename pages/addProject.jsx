@@ -4,7 +4,7 @@ import { DatePicker } from "antd";
 import styles from "../styles/task.module.css";
 import useSWR from "swr";
 import Select from "react-select";
-import { useAddTaskMutation } from "../redux/reducers/tasks/task";
+import { useAddProjectMutation } from "../redux/reducers/project/project";
 import UploadButton from "../component/uploadBTN/UploadButton";
 const fetcher = async () => {
   const res = await fetch(`http://localhost:3004/tasks`);
@@ -20,8 +20,10 @@ const { RangePicker } = DatePicker;
 const task = () => {
   const { data: task, error: taskError } = useSWR("tasks", fetcher);
   const { data: users, error: userError } = useSWR("users", usersFetcher);
-  const [addTask, { data, error: taskMutationError, isSuccess: taskSuccess }] =
-    useAddTaskMutation();
+  const [
+    addProject,
+    { data, error: taskMutationError, isSuccess: taskSuccess },
+  ] = useAddProjectMutation();
   const [modal2Visible, setModal2Visible] = useState(false);
   const [user, setUser] = useState(undefined);
   const [startDate, setStartDate] = useState("");
@@ -30,7 +32,9 @@ const task = () => {
   const [priority, setPriority] = useState("");
   const [teamLead, setTeamLead] = useState(null);
   const [teamMember, setTeamMember] = useState(null);
-
+  const [image, setImage] = useState(undefined);
+  const [cost, setCost] = useState(0);
+  const [hours, setHours] = useState(0);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     setUser(user);
@@ -53,28 +57,21 @@ const task = () => {
 
   //test tree
   const handleTaskSubmit = async () => {
-    const task = {
-      projectName: taskName,
-      taskpriority: priority,
-      taskStartDate: startDate,
-      taskEndDate: endDate,
-      teamLead: teamLead,
-      teamMember: teamMember,
-    };
-    try {
-      // const res = await fetch("http://localhost:3000/api/task", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(task),
-      // });
-      // const data_res = res.json();
+    console.log(taskName);
+    const formData = new FormData();
 
-      addTask(task);
-      if (data) {
-        setModal2Visible(false);
-      } else {
-        alert("something Wrong!");
-      }
+    try {
+      formData.append("image", image);
+      formData.append("projectName", taskName);
+      formData.append("taskpriority", priority);
+      formData.append("taskStartDate", startDate);
+      formData.append("taskEndDate", endDate);
+      formData.append("teamLead", teamLead);
+      formData.append("teamMember", teamMember);
+      formData.append("totalhours", hours);
+      formData.append("totalcost", cost);
+      addProject(formData);
+      // setModal2Visible(false);
     } catch (error) {
       alert(error.message);
       console.log(error.message);
@@ -91,8 +88,6 @@ const task = () => {
   if (!users) {
     return <h1>Loading...........</h1>;
   }
-  console.log("teamMember", teamMember);
-  console.log("teamLead", teamLead);
   return (
     <div>
       <Button type="primary" onClick={() => setModal2Visible(true)}>
@@ -145,7 +140,7 @@ const task = () => {
           <div>
             <p style={{ margin: "3px 0px" }}>Cost:</p>
             <input
-              onBlur={(e) => setPriority(e.target.value)}
+              onBlur={(e) => setCost(e.target.value)}
               style={{
                 width: "100%",
                 border: "1px solid gray",
@@ -159,7 +154,7 @@ const task = () => {
           <div>
             <p style={{ margin: "3px 0px" }}>Total Hours:</p>
             <input
-              onBlur={(e) => setPriority(e.target.value)}
+              onBlur={(e) => setHours(e.target.value)}
               style={{
                 width: "100%",
                 border: "1px solid gray",
@@ -183,7 +178,7 @@ const task = () => {
             outline: "none",
           }}
         ></textarea>
-        <UploadButton text="upload project picture" />
+        <UploadButton text="upload project picture" setImage={setImage} />
         <br />
         <br />
         <p style={{ margin: "3px 0px" }}>Set Project Deadline:</p>
