@@ -68,7 +68,6 @@ React components. */
     <div className={styles.container}>
       <div>
         <Row gutter={10}>
-          /* A map function. */
           {mytasks.map((data, index) => {
             return (
               <Col xs={24} md={8} key={index}>

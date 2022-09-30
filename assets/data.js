@@ -99,7 +99,12 @@ export const items = [
       </Link>,
       "13"
     ),
-    getItem(<Button name="Task" link="task" />, "14"),
+    getItem(
+      <Link href="/addProject">
+        <a>Add Project</a>
+      </Link>,
+      "14"
+    ),
     getItem(
       <Link href="/taskBoard">
         <a>Tasks Board</a>

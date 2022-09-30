@@ -4,9 +4,9 @@ import Task from "../../utils/models/tasks_models";
 import Test from "../../utils/test";
 
 const taskHandler = async (req, res) => {
-  const db = await connectDb;
+  const db = await connectDb();
   if (!db) {
-    return res.send("db probleb");
+    return res.send("db problem");
   }
   console.log("DB connent");
   if (req.method === "POST") {
@@ -44,7 +44,6 @@ const taskHandler = async (req, res) => {
     }
   }
   if (req.method === "GET") {
-    await connectDb;
     // const timer = new Timer({ interval: 1000, stopwatch: false });
     // timer.on("tick", (ms) => console.log("tick", ms));
     // timer.on("done", () => console.log("done!"));
@@ -56,9 +55,8 @@ const taskHandler = async (req, res) => {
     });
     console.log("data save db", g);
     if (g) {
-      res.json("task save successfully", data);
+      res.json({ message: "task save successfully", data: g });
     }
-    res.send("hello send", g);
   }
 };
 

@@ -5,6 +5,7 @@ import styles from "../styles/task.module.css";
 import useSWR from "swr";
 import Select from "react-select";
 import { useAddTaskMutation } from "../redux/reducers/tasks/task";
+import UploadButton from "../component/uploadBTN/UploadButton";
 const fetcher = async () => {
   const res = await fetch(`http://localhost:3004/tasks`);
   const data = await res.json();
@@ -16,7 +17,6 @@ const usersFetcher = async () => {
   return data;
 };
 const { RangePicker } = DatePicker;
-
 const task = () => {
   const { data: task, error: taskError } = useSWR("tasks", fetcher);
   const { data: users, error: userError } = useSWR("users", usersFetcher);
@@ -100,7 +100,7 @@ const task = () => {
       </Button>
       <Modal
         className={styles.mdl}
-        title="Add Task"
+        title="Add Project"
         centered
         visible={modal2Visible}
         onOk={handleTaskSubmit}
@@ -110,7 +110,13 @@ const task = () => {
           <p style={{ margin: "3px 0px" }}>Task Name:</p>
           <input
             onBlur={(e) => setTaskName(e.target.value)}
-            style={{ width: "100%" }}
+            style={{
+              width: "100%",
+              border: "1px solid gray",
+              padding: "5px",
+              borderRadius: "15px",
+              outline: "none",
+            }}
             type="text"
           />
         </div>
@@ -118,12 +124,69 @@ const task = () => {
           <p style={{ margin: "3px 0px" }}>Task Priority:</p>
           <input
             onBlur={(e) => setPriority(e.target.value)}
-            style={{ width: "100%" }}
+            style={{
+              width: "100%",
+              border: "1px solid gray",
+              padding: "5px",
+              borderRadius: "15px",
+              outline: "none",
+            }}
             type="text"
           />
         </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: "10px",
+          }}
+        >
+          <div>
+            <p style={{ margin: "3px 0px" }}>Cost:</p>
+            <input
+              onBlur={(e) => setPriority(e.target.value)}
+              style={{
+                width: "100%",
+                border: "1px solid gray",
+                padding: "5px",
+                borderRadius: "15px",
+                outline: "none",
+              }}
+              type="text"
+            />
+          </div>
+          <div>
+            <p style={{ margin: "3px 0px" }}>Total Hours:</p>
+            <input
+              onBlur={(e) => setPriority(e.target.value)}
+              style={{
+                width: "100%",
+                border: "1px solid gray",
+                padding: "5px",
+                borderRadius: "15px",
+                outline: "none",
+              }}
+              type="text"
+            />
+          </div>
+        </div>
+        <p style={{ margin: "3px 0px" }}>Add Description:</p>
+        <textarea
+          style={{
+            width: "100%",
+            minHeight: "80px",
+            maxHeight: "170px",
+            border: "1px solid gray",
+            padding: "5px",
+            borderRadius: "15px",
+            outline: "none",
+          }}
+        ></textarea>
+        <UploadButton text="upload project picture" />
         <br />
         <br />
+        <p style={{ margin: "3px 0px" }}>Set Project Deadline:</p>
         <RangePicker
           showTime={{
             format: "HH:mm",
