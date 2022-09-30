@@ -73,9 +73,6 @@ const Index = ({ data }) => {
     const MINUTE_MS = 300000;
     const interval = setInterval(async () => {
       handleToast();
-      // const res = await fetch("http://localhost:3000/api/screen");
-      // const data = res.json();
-      // console.log(data);
     }, MINUTE_MS);
     return () => clearInterval(interval);
   }, []);
