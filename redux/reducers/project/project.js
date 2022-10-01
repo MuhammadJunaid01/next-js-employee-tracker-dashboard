@@ -30,6 +30,9 @@ export const tasksApi = createApi({
         console.log("redux auth body log by redux", body);
         return {
           url: "project",
+          // headers: {
+          //   "content-type": "multipart/form-data",
+          // },
           body: body,
           method: "POST",
         };

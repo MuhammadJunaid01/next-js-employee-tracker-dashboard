@@ -30,8 +30,8 @@ const task = () => {
   const [endDate, setEndDate] = useState("");
   const [taskName, setTaskName] = useState("");
   const [priority, setPriority] = useState("");
-  const [teamLead, setTeamLead] = useState(null);
-  const [teamMember, setTeamMember] = useState(null);
+  const [teamLead, setTeamLead] = useState([]);
+  const [teamMember, setTeamMember] = useState([]);
   const [image, setImage] = useState(undefined);
   const [cost, setCost] = useState(0);
   const [hours, setHours] = useState(0);
@@ -77,7 +77,8 @@ const task = () => {
       console.log(error.message);
     }
   };
-  console.log("taskMutationError", taskMutationError);
+  // const ttt = [...teamMember];
+  console.log("teamMember", teamMember);
   const option2 = users?.map((user) => {
     return {
       label: user.name,

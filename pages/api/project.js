@@ -1,6 +1,11 @@
 import connectDb from "../../utils/connectDb";
-import multiparty from "multiparty";
+import formidable from "formidable";
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 const projectHandler = async (req, res) => {
   const db = await connectDb();
   console.log("DB CONNECTED");
@@ -11,26 +16,16 @@ const projectHandler = async (req, res) => {
     return res.status(200).json({ msg: " cvnds vcds vbd" });
   }
   if (req.method === "POST") {
-    const form = new multiparty.Form();
+    const form = new formidable.IncomingForm();
     try {
-      form.parse(req, function (err, fields, files) {
+      form.parse(req, (err, fields, files) => {
         if (err) {
-          console.log(err.message);
-          res.status(404).json({ message: err.message });
-          return;
-        } else {
-          const { projectName } = fields;
-          console.log("projectName", projectName);
-          const msg = { name: "hjkhjkhk" };
-          //   return res.status(200).json({ msg });
-          console.log("else block");
+          return res.send("something wrong!");
         }
-        //   console.log("post fields", fields);
-        //   console.log("files", files);
+        console.log("files", files.image.filepath);
+        console.log("teamMember", fields.teamMember);
       });
-      const msg = { name: "hjkhjkhk" };
-      console.log("MKJEDVKJFV KF VK FDJS VKFS VK ");
-      return res.status(200).json({ msg });
+      return res.status(200).json({});
     } catch (error) {
       console.log("errr", error.message);
       return res.status(200).json({ error });

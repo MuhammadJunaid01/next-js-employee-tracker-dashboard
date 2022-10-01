@@ -100,7 +100,7 @@ export const items = [
       "13"
     ),
     getItem(
-      <Link href="/addProject">
+      <Link href="/addproject">
         <a>Add Project</a>
       </Link>,
       "14"
