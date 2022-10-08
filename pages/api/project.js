@@ -23,7 +23,7 @@ const projectHandler = async (req, res) => {
           return res.send("something wrong!");
         }
         console.log("files", files.image.filepath);
-        console.log("teamMember", fields.teamMember);
+        console.log("teamMember", fields);
       });
       return res.status(200).json({});
     } catch (error) {
