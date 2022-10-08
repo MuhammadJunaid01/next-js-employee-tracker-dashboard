@@ -66,8 +66,8 @@ const task = () => {
       formData.append("taskpriority", priority);
       formData.append("taskStartDate", startDate);
       formData.append("taskEndDate", endDate);
-      formData.append("teamLead", teamLead);
-      formData.append("teamMember", teamMember);
+      formData.append("teamLead", JSON.stringify(teamLead));
+      formData.append("teamMember", JSON.stringify(teamMember));
       formData.append("totalhours", hours);
       formData.append("totalcost", cost);
       addProject(formData);
