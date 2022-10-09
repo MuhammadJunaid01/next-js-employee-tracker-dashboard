@@ -28,12 +28,13 @@ const Login = () => {
     // if (user) {
     //   reset();
     // }
-    router.push("/");
+    // router.push("/");
   };
   useEffect(() => {
     if (userDaTa) {
       localStorage.setItem("user", JSON.stringify(userDaTa));
     }
+    console.log("userDaTa", userDaTa);
   }, [userDaTa]);
   if (typeof window !== "undefined") {
   }

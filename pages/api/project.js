@@ -52,7 +52,7 @@ const projectHandler = async (req, res) => {
                   return res.status(404).json({ message: err.message });
                 } else {
                   console.log("HELLO ELSE BLOCK");
-                  const projectCreate = await Project.create({
+                  const project = await Project.create({
                     projectName,
                     taskpriority,
                     taskStartDate,
@@ -63,7 +63,7 @@ const projectHandler = async (req, res) => {
                     totalcost,
                     image: result.url,
                   });
-                  const project = await projectCreate.save();
+
                   console.log("save db result", project);
                   return res.status(200).json(project);
                 }
