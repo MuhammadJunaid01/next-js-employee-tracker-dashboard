@@ -3,6 +3,20 @@
   overflow: hidden !important;
 }
 .content {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-gap: 20px;
+}
+.orderList {
+  border: 1px solid gray;
+  width: 50%;
+  padding: 3px 10px;
+  border-radius: 7px;
+  position: relative;
+}
+.orderList_name {
+  border-bottom: 1px solid gray;
+  padding: 3px;
+  border-radius: 5px;
+  text-align: center;
 }

@@ -6,6 +6,10 @@ import {
   ReOrderableListGroup,
 } from "react-reorderable-list";
 import "react-reorderable-list/dist/index.css";
+import MyModal from "../component/custom-modal/MyModal";
+import { Button, Modal } from "antd";
+import { PlusCircleOutlined } from "@ant-design/icons";
+
 const taskBoard = () => {
   const tasks = [
     { name: "h1" },
@@ -50,6 +54,8 @@ const taskBoard = () => {
   };
   return (
     <div className={styles.container}>
+      <MyModal openBtnName="create Task" Icon={PlusCircleOutlined} />
+
       <div className={styles.content}>
         <ReOrderableListGroup
           //The name for this group must be unique as this serves as the identifier
@@ -63,12 +69,10 @@ const taskBoard = () => {
         >
           {groups.map((list, index) => (
             //here we use the path property to access the list array from the object
-            <ReOrderableList
-              style={{ border: "2px solid red" }}
-              key={`list-${index}`}
-              path={`${index}.tasks`}
-            >
+
+            <ReOrderableList key={`list-${index}`} path={`${index}.tasks`}>
               <p
+                className={styles.orderList_name}
                 style={{
                   border: "2px solid gray",
                   padding: "4px 10px",
@@ -78,18 +82,32 @@ const taskBoard = () => {
               >
                 {list.name}
               </p>
+
               {list.tasks.map((data, index) => (
                 <ReOrderableItem
                   onItemDragEnd={() => l(data)}
                   key={`item-${index}`}
                 >
-                  <div style={{ backgroundColor: "" }}>
-                    <h1
+                  <div
+                    style={{
+                      backgroundColor: "",
+                    }}
+                  >
+                    <h4
                       onClick={() => handleReorder(data)}
-                      style={{ cursor: "pointer" }}
+                      style={{
+                        cursor: "pointer",
+                        padding: "4px",
+                        border: "1px solid gray",
+                        width: "90%",
+                        margin: "0 auto",
+                        borderRadius: "6px",
+                        color: "white",
+                        marginTop: "9px",
+                      }}
                     >
                       {data.name}
-                    </h1>
+                    </h4>
                   </div>
                 </ReOrderableItem>
               ))}
