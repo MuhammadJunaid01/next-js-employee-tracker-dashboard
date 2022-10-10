@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "../styles/tasksBoard.module.css";
 import {
   ReOrderableItem,
   ReOrderableList,
@@ -48,9 +49,8 @@ const taskBoard = () => {
     console.log(d);
   };
   return (
-    <div>
-      <h1>hello task board</h1>
-      <div style={{ display: "flex", gap: "20px" }}>
+    <div className={styles.container}>
+      <div className={styles.content}>
         <ReOrderableListGroup
           //The name for this group must be unique as this serves as the identifier
           //when validating if the item should be transfered to the list or not.
@@ -63,8 +63,21 @@ const taskBoard = () => {
         >
           {groups.map((list, index) => (
             //here we use the path property to access the list array from the object
-            <ReOrderableList key={`list-${index}`} path={`${index}.tasks`}>
-              <p style={{ border: "2px solid gray" }}>{list.name}</p>
+            <ReOrderableList
+              style={{ border: "2px solid red" }}
+              key={`list-${index}`}
+              path={`${index}.tasks`}
+            >
+              <p
+                style={{
+                  border: "2px solid gray",
+                  padding: "4px 10px",
+                  borderRadius: "5px",
+                  margin: "0px",
+                }}
+              >
+                {list.name}
+              </p>
               {list.tasks.map((data, index) => (
                 <ReOrderableItem
                   onItemDragEnd={() => l(data)}

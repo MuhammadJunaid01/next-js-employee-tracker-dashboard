@@ -1,0 +1,8 @@
+.container {
+  width: 100%;
+  overflow: hidden !important;
+}
+.content {
+  display: flex;
+  justify-content: space-around;
+}
