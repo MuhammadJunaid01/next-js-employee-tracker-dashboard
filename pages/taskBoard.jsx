@@ -9,6 +9,7 @@ import "react-reorderable-list/dist/index.css";
 import MyModal from "../component/custom-modal/MyModal";
 import { Button, Modal } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import UploadImage from "../component/image-upload/UploadImage";
 
 const taskBoard = () => {
   const tasks = [
@@ -54,7 +55,11 @@ const taskBoard = () => {
   };
   return (
     <div className={styles.container}>
-      <MyModal openBtnName="create Task" Icon={PlusCircleOutlined} />
+      <MyModal
+        openBtnName="create Task"
+        UploadImage={UploadImage}
+        Icon={PlusCircleOutlined}
+      />
 
       <div className={styles.content}>
         <ReOrderableListGroup
