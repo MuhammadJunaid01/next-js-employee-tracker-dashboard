@@ -53,14 +53,21 @@ const taskBoard = () => {
   const l = (d) => {
     console.log(d);
   };
+  const employee = [
+    { name: "junaid" },
+    { name: "zahed" },
+    { name: "karim" },
+    { name: "mahin" },
+    { name: "sohel" },
+  ];
   return (
     <div className={styles.container}>
       <MyModal
         openBtnName="create Task"
         UploadImage={UploadImage}
         Icon={PlusCircleOutlined}
+        employee={employee}
       />
-
       <div className={styles.content}>
         <ReOrderableListGroup
           //The name for this group must be unique as this serves as the identifier

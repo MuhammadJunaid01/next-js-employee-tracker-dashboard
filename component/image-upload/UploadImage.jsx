@@ -1,3 +1,4 @@
+import { DownloadOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import ImageUploading from "react-images-uploading";
 
@@ -5,6 +6,10 @@ const UploadImage = () => {
   const [images, setImages] = useState([]);
   const maxNumber = 69;
 
+  /**
+   * OnChange is a function that takes two arguments, imageList and addUpdateIndex, and returns
+   * undefined.
+   */
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
@@ -13,7 +18,6 @@ const UploadImage = () => {
 
   return (
     <div>
-      {" "}
       <div className="App">
         <ImageUploading
           multiple
@@ -33,15 +37,17 @@ const UploadImage = () => {
           }) => (
             // write your building UI
             <div className="upload__image-wrapper">
-              <button
-                style={isDragging ? { color: "red" } : undefined}
-                onClick={onImageUpload}
-                {...dragProps}
-              >
-                Click or Drop here
-              </button>
+              <div style={{ display: "flex", gap: "20px" }}>
+                <button
+                  style={{ color: "black", cursor: "pointer" }}
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  Click or Drop here
+                  <DownloadOutlined style={{ fontSize: "20px" }} />
+                </button>
+              </div>
               &nbsp;
-              <button onClick={onImageRemoveAll}>Remove all images</button>
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image["data_url"]} alt="" width="100" />

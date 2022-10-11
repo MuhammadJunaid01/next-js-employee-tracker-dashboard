@@ -1,26 +1,54 @@
 import React, { useState } from "react";
 import styles from "../../styles/customModal.module.css";
-import { Modal } from "react-responsive-modal";
-import "react-responsive-modal/styles.css";
 
-const MyModal = ({ openBtnName, Icon, UploadImage }) => {
+import { DatePicker, Space } from "antd";
+const { RangePicker } = DatePicker;
+
+/* A function that takes in props and returns a modal. */
+const MyModal = ({ openBtnName, Icon, UploadImage, employee }) => {
   const [open, setOpen] = useState(false);
-  const lorem = (
-    <p>
-      Mauris ac arcu sit amet dui interdum bibendum a sed diam. Praesent rhoncus
-      congue ipsum elementum lobortis. Ut ligula purus, ultrices id condimentum
-      quis, tincidunt quis purus. Proin quis enim metus. Nunc feugiat odio at
-      eros porta, ut rhoncus lorem tristique. Nunc et ipsum eu ex vulputate
-      consectetur vel eu nisi. Donec ultricies rutrum lectus, sit ame feugiat
-      est semper vitae. Proin varius imperdiet consequat. Proin eu metus nisi.
-      In hac habitasse platea dictumst. Vestibulum ac ultrices risus.
-      Pellentesque arcu sapien, aliquet sed orci sit amet, pulvinar interdum
-      velit. Nunc a rhoncus ipsum, maximus fermentum dolor. Praesent aliquet
-      justo vitae rutrum volutpat. Ut quis pulvinar est.
-    </p>
-  );
+  const [employeeSelect, setEmployeeSelect] = useState("");
+  const [show, setShow] = useState(false);
+
+  /**
+   * HandleEmployee is a function that takes in a name and sets the state of employeeSelect to the name
+   * that was passed in.
+   */
+  const handleEmployee = (name) => {
+    console.log("hello name", name);
+    setEmployeeSelect(name);
+  };
+  /**
+   * When the user clicks the button, toggle the value of the show variable.
+   */
+  const handleShow = () => {
+    setShow((prev) => !prev);
+  };
+  /**
+   * The function handleOpen is a function that takes no parameters and returns a function that takes a
+   * parameter called open and returns the opposite of the value of open.
+   */
+  const handleOpen = () => {
+    setOpen((open) => !open);
+  };
+  /**
+   * A function that takes two parameters, date and dateString. It then logs the two parameters to the
+   * console.
+   */
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
+  /**
+   * A function that is called when the user clicks the OK button.
+   */
+  const onOk = (value) => {
+    console.log("onOk: ", value);
+  };
+  const handleSubmit = () => {
+    console.log("handle submit");
+  };
   return (
-    <div>
+    <div className={styles.container}>
       <div
         style={{
           width: "150px",
@@ -33,7 +61,7 @@ const MyModal = ({ openBtnName, Icon, UploadImage }) => {
           borderRadius: "5px",
         }}
       >
-        <button onClick={() => setOpen(true)} className={styles.openbtn}>
+        <button onClick={handleOpen} className={styles.openbtn}>
           {openBtnName}{" "}
         </button>
         <p
@@ -47,10 +75,136 @@ const MyModal = ({ openBtnName, Icon, UploadImage }) => {
           {<Icon />}
         </p>
       </div>
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <h2>Big modal</h2>
-        {UploadImage && <UploadImage />}
-      </Modal>
+      {open && (
+        <div className={styles.add_task}>
+          {employee && (
+            <>
+              <p
+                style={{
+                  color: "black",
+                  fontSize: "22px",
+                  margin: "0px",
+                  padding: "0px",
+                }}
+              >
+                Select Employee
+              </p>
+              <div onClick={handleShow}>
+                <input
+                  style={{
+                    outline: "none",
+                    border: "1px solid gainsboro",
+                    width: "100%",
+                    padding: "5px 7px",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                    color: "black",
+                  }}
+                  type="text"
+                  value={employeeSelect ? employeeSelect : "Select Employee"}
+                  disabled
+                />
+              </div>
+            </>
+          )}
+          {show && employeeSelect
+            ? null
+            : employee.map((emp, index) => {
+                return (
+                  <p
+                    style={{
+                      color: "black",
+                      fontSize: "18px",
+                      cursor: "pointer",
+                      margin: "0px ",
+                      padding: "0px",
+                    }}
+                    key={index}
+                    onClick={() => handleEmployee(emp.name)}
+                  >
+                    {emp.name}
+                  </p>
+                );
+              })}
+
+          {UploadImage && (
+            <div style={{ display: "flex", gap: "20px", margin: "10px 0px" }}>
+              <p style={{ color: "black", margin: "0px", padding: "0px" }}>
+                Add png file
+              </p>
+              <UploadImage />
+            </div>
+          )}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              gap: "30px",
+            }}
+          >
+            <div style={{ width: "50%" }}>
+              <p
+                style={{
+                  color: "black",
+                  margin: "0px",
+                  padding: "0px",
+                  fontSize: "19px",
+                }}
+              >
+                Explain about task
+              </p>
+              <textarea
+                style={{
+                  border: "1px solid gray",
+                  outline: "none",
+                  color: "black",
+                  padding: "4px ",
+                  borderRadius: "5px",
+                  width: "100%",
+                  maxHeight: "200px",
+                  minHeight: "80px",
+                }}
+                type="text"
+              />
+            </div>
+            <div style={{ width: "50%", marginTop: "1px" }}>
+              <p
+                style={{
+                  color: "black",
+                  margin: "0px",
+                  padding: "0px",
+                  fontSize: "19px",
+                }}
+              >
+                Deadline
+              </p>
+              {/* <DatePicker showTime onChange={onChange} onOk={onOk} /> */}
+              <RangePicker
+                showTime={{
+                  format: "HH:mm",
+                }}
+                format="YYYY-MM-DD HH:mm"
+                onChange={onChange}
+                onOk={onOk}
+              />
+            </div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              onClick={handleSubmit}
+              style={{
+                backgroundColor: "#1890FF",
+                cursor: "pointer",
+                border: "none",
+                padding: "4px 20px",
+                borderRadius: "3px",
+              }}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
