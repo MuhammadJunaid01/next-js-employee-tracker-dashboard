@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import styles from "../../styles/customModal.module.css";
 
 import { DatePicker, Space } from "antd";
+import { useAddTaskMutation } from "../../redux/reducers/add-task/addTask";
 const { RangePicker } = DatePicker;
 
 /* A function that takes in props and returns a modal. */
 const MyModal = ({ openBtnName, Icon, UploadImage, employee }) => {
+  const [addTask, { data, isSuccess, error }] = useAddTaskMutation();
   const [open, setOpen] = useState(false);
   const [employeeSelect, setEmployeeSelect] = useState("");
   const [show, setShow] = useState(false);
+  const [image, setImage] = useState("");
+  const [desc, setDesc] = useState("");
+  const [deadline, setDeadline] = useState({
+    start: "",
+    end: "",
+  });
 
   /**
    * HandleEmployee is a function that takes in a name and sets the state of employeeSelect to the name
@@ -36,16 +44,34 @@ const MyModal = ({ openBtnName, Icon, UploadImage, employee }) => {
    * console.
    */
   const onChange = (date, dateString) => {
-    console.log(date, dateString);
+    console.log("fffff", dateString);
+    setDeadline({ start: dateString[0], end: dateString[1] });
   };
   /**
    * A function that is called when the user clicks the OK button.
    */
   const onOk = (value) => {
-    console.log("onOk: ", value);
+    console.log("dateString: ", value);
   };
   const handleSubmit = () => {
+    if (
+      deadline.end == "" ||
+      deadline.start == "" ||
+      desc == "" ||
+      image == "" ||
+      employee == ""
+    ) {
+      alert("please full all feilds");
+      return;
+    }
     console.log("handle submit");
+    const formData = new FormData();
+    formData.append("employee", employeeSelect);
+    formData.append("pngFile", image);
+    formData.append("description", desc);
+    formData.append("start", deadline.start);
+    formData.append("end", deadline.end);
+    addTask(formData);
   };
   return (
     <div className={styles.container}>
@@ -132,7 +158,7 @@ const MyModal = ({ openBtnName, Icon, UploadImage, employee }) => {
               <p style={{ color: "black", margin: "0px", padding: "0px" }}>
                 Add png file
               </p>
-              <UploadImage />
+              <UploadImage setImage={setImage} />
             </div>
           )}
           <div
@@ -154,6 +180,7 @@ const MyModal = ({ openBtnName, Icon, UploadImage, employee }) => {
                 Explain about task
               </p>
               <textarea
+                onBlur={(e) => setDesc(e.target.value)}
                 style={{
                   border: "1px solid gray",
                   outline: "none",

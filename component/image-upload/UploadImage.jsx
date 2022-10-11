@@ -2,7 +2,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import ImageUploading from "react-images-uploading";
 
-const UploadImage = () => {
+const UploadImage = ({ setImage }) => {
   const [images, setImages] = useState([]);
   const maxNumber = 69;
 
@@ -12,8 +12,9 @@ const UploadImage = () => {
    */
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
-    console.log(imageList, addUpdateIndex);
+    console.log(imageList[0].file);
     setImages(imageList);
+    setImage(imageList[0].file);
   };
 
   return (
