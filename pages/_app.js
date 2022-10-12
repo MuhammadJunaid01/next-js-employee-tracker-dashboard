@@ -2,7 +2,6 @@ import MainLayoute from "../layoutes/mainLayoute/MainLayoute";
 import "../styles/globals.css";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import { wrapper } from "../redux/store/store";
-import "react-pro-sidebar/dist/css/styles.css";
 import AuthCheck from "../protected_route/AuthCheck";
 
 function MyApp({ Component, pageProps }) {

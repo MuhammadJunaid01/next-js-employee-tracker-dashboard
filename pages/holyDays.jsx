@@ -4,25 +4,13 @@ import { useEffect } from "react";
 import useHolyDays from "../utils/getHolydays";
 
 const holyDays = () => {
-  const [contrys, holydays] = useHolyDays();
-  useEffect(() => {
-    console.log("holydays", holydays);
-  }, []);
+  /* Destructuring the return value of the useHolyDays hook. */
+  const [contrys, holydays] = useHolyDays("BD");
+
   return (
     <div>
-      <h1>hgello</h1>
-      npm i date-holidays
       <Row gutter={16}>
         {holydays?.map((holy, index) => {
-          console.log(
-            "holy ",
-            // holy.start.getUTCFullYear(),
-            holy.start.getDay(),
-            holy.start.getMonth(),
-            holy.start.getFullYear()
-            // holy.start.getMonth(),
-            // holy.start.getDay()
-          );
           return (
             <Col xs={24} md={6} key={index}>
               <div
@@ -33,7 +21,6 @@ const holyDays = () => {
                   marginBottom: "10px",
                 }}
               >
-                <p>k</p>
                 <p style={{ margin: "0px", padding: "0px", color: "white" }}>
                   {holy.date}
                 </p>

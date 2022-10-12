@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import styles from "../../styles/menubar.module.css";
 import { collapseMenu } from "../../redux/reducers/collapse/collapse";
+
 const MenuBar = () => {
   const dispatch = useDispatch();
   const { coollapse } = useSelector((stae) => stae.collapse);
