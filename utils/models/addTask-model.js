@@ -22,5 +22,5 @@ const addTaskSchema = Schema({
     required: true,
   },
 });
-const AddTask = models.AddTask || model("addTaskSchema", addTaskSchema);
+const AddTask = models.AddTask || model("AddTask", addTaskSchema);
 export default AddTask;

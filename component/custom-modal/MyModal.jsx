@@ -7,6 +7,7 @@ const { RangePicker } = DatePicker;
 
 /* A function that takes in props and returns a modal. */
 const MyModal = ({ openBtnName, Icon, UploadImage, employee }) => {
+  /* A hook that is used to add a task. */
   const [addTask, { data, isSuccess, error }] = useAddTaskMutation();
   const [open, setOpen] = useState(false);
   const [employeeSelect, setEmployeeSelect] = useState("");
