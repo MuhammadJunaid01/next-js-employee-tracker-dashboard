@@ -38,6 +38,7 @@
     "react-redux": "^8.0.2",
     "react-reorderable-list": "^1.0.3",
     "react-select": "^5.4.0",
+    "react-select-date": "^0.1.1",
     "react-timer-hook": "^3.0.5",
     "react-toastify": "^9.0.8",
     "screenshot-desktop": "^1.12.7",

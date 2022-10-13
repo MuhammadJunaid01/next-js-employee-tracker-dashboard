@@ -3,96 +3,40 @@ import { Badge, Calendar } from "antd";
 
 const AbsentEmployeeList = ({ absentEmployee }) => {
   const getListData = (value) => {
+    // console.log(value);
     let listData;
-    console.log("valuekkkkkkkk", value);
-    // switch (value.date()) {
-    //   case 8:
-    //     listData = [
-    //       {
-    //         type: "warning",
-    //         content: "This is warning event.",
-    //       },
-    //       {
-    //         type: "success",
-    //         content: "This is usual event.",
-    //       },
-    //     ];
-    //     break;
 
-    //   case 10:
-    //     listData = [
-    //       {
-    //         type: "warning",
-    //         content: "This is warning event.",
-    //       },
-    //       {
-    //         type: "success",
-    //         content: "This is usual event.",
-    //       },
-    //       {
-    //         type: "error",
-    //         content: "This is error event.",
-    //       },
-    //     ];
-    //     break;
-
-    //   case 15:
-    //     listData = [
-    //       {
-    //         type: "warning",
-    //         content: "This is warning event",
-    //       },
-    //       {
-    //         type: "success",
-    //         content: "This is very long usual event。。....",
-    //       },
-    //       {
-    //         type: "error",
-    //         content: "This is error event 1.",
-    //       },
-    //       {
-    //         type: "error",
-    //         content: "This is error event 2.",
-    //       },
-    //       {
-    //         type: "error",
-    //         content: "This is error event 3.",
-    //       },
-    //       {
-    //         type: "error",
-    //         content: "This is error event 4.",
-    //       },
-    //     ];
-    //     break;
-
-    //   default:
-    // }
     absentEmployee.map((data) => {
-      if (data.date == value.date()) {
-        listData = [
-          {
-            type: "njjnjnnjnjknj",
-            content: data.reson,
-          },
-        ];
-      }
+      data.date.map((date) => {
+        if (date == value.date() && value._d.getMonth() == data.month) {
+          listData = [
+            {
+              type: "njjnjnnjnjknj",
+              content: data.reson,
+            },
+          ];
+        }
+      });
     });
     return listData || [];
   };
 
   const getMonthData = (value) => {
-    if (value.month() === 8) {
+    if (value.month()) {
       return 1394;
     }
   };
   const monthCellRender = (value) => {
     const num = getMonthData(value);
+    console.log("hello num", num);
     return num ? (
       <div className="notes-month">
         <section>{num}</section>
         <span>Backlog number</span>
       </div>
-    ) : null;
+    ) : (
+      "ncvdnv k vfckxv bfxlb v"
+    );
   };
 
   const dateCellRender = (value) => {
@@ -107,6 +51,7 @@ const AbsentEmployeeList = ({ absentEmployee }) => {
       </ul>
     );
   };
+
   return (
     <div>
       <Calendar
