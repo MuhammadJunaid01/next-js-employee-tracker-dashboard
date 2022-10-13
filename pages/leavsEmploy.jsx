@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 // import { Badge, Calendar } from "antd";
-import Calendar from "react-select-date";
 
 import AbsentEmployeeList from "../component/absentEmployee-list";
+import LeaveCalendar from "../component/leave-calendar/Index";
 
 const leavsEmploy = () => {
   const [open, setOpen] = useState(false);
   const [multipleDate, setMultipleDate] = useState();
+  const [reason, setReason] = useState("");
   console.log("multipleDate", multipleDate);
   const absent = [
     { date: [10], month: 1, reson: "this sick" },
@@ -18,15 +19,13 @@ const leavsEmploy = () => {
   ];
   return (
     <div>
-      <div style={{ color: "black" }}>
-        <Calendar
-          onSelect={(date) => setMultipleDate(date)}
-          templateClr="blue"
-          selectDateType="multiple"
-          showDateInputField={false}
-        />
-      </div>
-      <p>leaves</p>
+      <LeaveCalendar
+        setMultipleDate={setMultipleDate}
+        buttonText={"Select date for leave"}
+        setReason={setReason}
+        applyBtnText={"Apply for leave"}
+      />
+
       <AbsentEmployeeList absentEmployee={absent} />
     </div>
   );
