@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import Calendar from "react-select-date";
 import Image from "next/image";
 import apllyLogo from "../../public/apply-for-leave.gif";
+/* A function component. */
 const LeaveCalendar = ({
   buttonText,
   setMultipleDate,
   setReason,
   applyBtnText,
+  handleApplyLeave,
 }) => {
   const [show, setShow] = useState(false);
   return (
@@ -62,6 +64,7 @@ const LeaveCalendar = ({
               {buttonText}
             </button>
             <button
+              onClick={handleApplyLeave}
               style={{
                 cursor: "pointer",
                 backgroundColor: "transparent",

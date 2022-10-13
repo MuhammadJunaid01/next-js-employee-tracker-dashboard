@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { Badge, Calendar } from "antd";
 
 import AbsentEmployeeList from "../component/absentEmployee-list";
 import LeaveCalendar from "../component/leave-calendar/Index";
+import { useApplyLeaveMutation } from "../redux/reducers/apply-for-leave";
 
 const leavsEmploy = () => {
+  /* A hook that is used to call the mutation. */
+  const [applyLeave, { data, error, isSuccess }] = useApplyLeaveMutation();
   const [open, setOpen] = useState(false);
   const [multipleDate, setMultipleDate] = useState();
   const [reason, setReason] = useState("");
-  console.log("multipleDate", multipleDate);
+  const [employee, setEmployee] = useState("");
+
   const absent = [
     { date: [10], month: 1, reson: "this sick" },
     { date: [22, 23, 24], month: 2, reson: "this oooo" },
@@ -17,6 +21,30 @@ const leavsEmploy = () => {
     { date: [18], month: 9, reson: "this 18888" },
     { date: [25, 26, 27], month: 10, reson: "this 255555" },
   ];
+  /* A hook that is called when the component is mounted. */
+  useEffect(() => {
+    const empl = JSON.parse(localStorage.getItem("user"));
+    setEmployee(empl);
+  }, []);
+  console.log("email", employee?.user?.email);
+
+  /**
+   * When the user clicks the button, the function will be called and the data will be sent to the
+   * server.
+   */
+  const handleApplyLeave = () => {
+    if (!employee) {
+      return alert("vhvghv");
+    }
+    const data = {
+      reason: reason,
+      multipleDate: multipleDate,
+      employee: employee.user.email,
+    };
+    console.log();
+    applyLeave(data);
+  };
+  console.log("aplly leave data from backend", data);
   return (
     <div>
       <LeaveCalendar
@@ -24,6 +52,7 @@ const leavsEmploy = () => {
         buttonText={"Select date for leave"}
         setReason={setReason}
         applyBtnText={"Apply for leave"}
+        handleApplyLeave={handleApplyLeave}
       />
 
       <AbsentEmployeeList absentEmployee={absent} />
