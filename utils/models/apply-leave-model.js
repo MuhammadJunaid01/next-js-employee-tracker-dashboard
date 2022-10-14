@@ -9,7 +9,7 @@ const ApplyForLeaveSchema = Schema({
     required: true,
   },
   date: {
-    type: Array,
+    type: [],
     required: true,
   },
 });

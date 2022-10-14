@@ -3,11 +3,15 @@ import React, { useEffect, useState } from "react";
 
 import AbsentEmployeeList from "../component/absentEmployee-list";
 import LeaveCalendar from "../component/leave-calendar/Index";
-import { useApplyLeaveMutation } from "../redux/reducers/apply-for-leave";
+import {
+  useApplyLeaveMutation,
+  useGetApplyEmployeeQuery,
+} from "../redux/reducers/apply-for-leave";
 
 const leavsEmploy = () => {
   /* A hook that is used to call the mutation. */
   const [applyLeave, { data, error, isSuccess }] = useApplyLeaveMutation();
+  const { data: applyLeaveData } = useGetApplyEmployeeQuery();
   const [open, setOpen] = useState(false);
   const [multipleDate, setMultipleDate] = useState();
   const [reason, setReason] = useState("");
@@ -26,7 +30,7 @@ const leavsEmploy = () => {
     const empl = JSON.parse(localStorage.getItem("user"));
     setEmployee(empl);
   }, []);
-  console.log("email", employee?.user?.email);
+  console.log("applyLeaveData", applyLeaveData);
 
   /**
    * When the user clicks the button, the function will be called and the data will be sent to the

@@ -17,6 +17,10 @@ export const applyForLeave = createApi({
         };
       },
     }),
+    getApplyEmployee: builder.query({
+      query: () => "applyForLeave",
+    }),
   }),
 });
-export const { useApplyLeaveMutation } = applyForLeave;
+export const { useApplyLeaveMutation, useGetApplyEmployeeQuery } =
+  applyForLeave;
