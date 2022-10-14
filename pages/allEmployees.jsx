@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import React from "react";
 import styles from "../styles/allemployee.module.css";
 import UserImage from "../public/empolyee.jpg";
-import { RadarChartOutlined } from "@ant-design/icons";
+import signiture from "../public/signature .png";
 import Image from "next/image";
 const employee = [
   {
@@ -17,6 +17,7 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: true,
   },
   {
     id: 2,
@@ -30,6 +31,7 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: true,
   },
   {
     id: 3,
@@ -43,6 +45,7 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: false,
   },
   {
     id: 4,
@@ -56,6 +59,7 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: true,
   },
   {
     id: 5,
@@ -69,6 +73,7 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: true,
   },
   {
     id: 6,
@@ -82,6 +87,7 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: false,
   },
   {
     id: 7,
@@ -95,6 +101,7 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: true,
   },
   {
     id: 8,
@@ -108,16 +115,25 @@ const employee = [
     home: "40, saral bazar, Banskhali, Chittagong,Bangladesh.",
     supportEmail: "support@hotmail.com",
     supportNum: "(+88) 01837893042",
+    isRun: true,
   },
 ];
+
+/* Sorting the array of objects by the `isRun` property. */
+const newEmpl = employee.sort((a, b) => {
+  return a.isRun ? -1 : 1;
+});
 const allEmployees = () => {
   return (
     <div className={styles.container}>
       <Row gutter={16}>
-        {employee?.map((empl, index) => {
+        {newEmpl?.map((empl, index) => {
           return (
             <Col key={index} xs={24} md={8}>
               <div className={styles.card}>
+                {empl.isRun ? null : (
+                  <p style={{ color: "red" }}>Job ermination</p>
+                )}
                 <div className={styles.cardAngle}></div>
                 <div className={styles.cardItem}>
                   <Image
@@ -127,7 +143,7 @@ const allEmployees = () => {
                     width={80}
                     alt="image"
                   />
-                  <div style={{ marginTop: "-16px", marginLeft: "-22px" }}>
+                  <div style={{ marginTop: "-8px", marginLeft: "-22px" }}>
                     <p
                       style={{
                         margin: "0px",
@@ -141,7 +157,7 @@ const allEmployees = () => {
                   </div>
                 </div>
                 <div className={styles.cardInfo}>
-                  <div style={{ borderRight: "2px solid red", width: "" }}>
+                  <div style={{ width: "" }}>
                     <p style={{ margin: "0px", padding: "0px" }}>
                       {empl.phone}
                     </p>
@@ -150,17 +166,27 @@ const allEmployees = () => {
                     </p>
                     <p style={{ margin: "0px", padding: "0px" }}>{empl.home}</p>
                   </div>
-                  <div style={{ width: "70%" }}>
+                  <div style={{}}>
                     <p style={{ margin: "0px", padding: "0px" }}>
                       {empl.supportEmail}
                     </p>
                     <p style={{ margin: "0px", padding: "0px" }}>
                       {empl.supportNum}
                     </p>
-                    <p style={{ margin: "0px", padding: "0px" }}>
+                    <p
+                      style={{
+                        width: "70%",
+                        margin: "0px",
+                        padding: "0px",
+                        overflowWrap: "break-word",
+                      }}
+                    >
                       {empl.office}
                     </p>
                   </div>
+                </div>
+                <div className={styles.signiture}>
+                  <Image src={signiture} width={200} height={100}></Image>
                 </div>
               </div>
             </Col>
