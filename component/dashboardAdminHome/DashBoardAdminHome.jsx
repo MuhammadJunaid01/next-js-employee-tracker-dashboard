@@ -5,12 +5,17 @@ import { FaThLarge } from "react-icons/fa";
 import { Col, Row } from "antd";
 import BarChart from "../chart/BarChart";
 import BumpChart from "../chart/BumpChart";
+import Timer from "../timer/Timer";
 
 const DashBoardAdminHome = ({ Icon, title }) => {
   return (
     <div>
       <h1>hello home</h1>
+      <h1>hello testing</h1>
       <Row gutter={16}>
+        {/* <Col xs={24} md={12}>
+          <Timer />
+        </Col> */}
         <Col xs={24} md={6}>
           <SimpleBreef Icon={FaThLarge} count={20} title={"Projects"} />
         </Col>

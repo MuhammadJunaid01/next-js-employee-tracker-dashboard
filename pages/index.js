@@ -6,6 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DashBoardAdminHome from "../component/dashboardAdminHome/dashBoardAdminHome";
 import { FaMemory } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import Timer from "../component/timer/Timer";
+import useCheckPageReloadRouteChange from "../utils/checkRoutechange_or_reloade";
+import { useEffect, useState } from "react";
 export default function Home() {
   return (
     <div>
@@ -15,6 +19,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <MainLayoute /> */}
+      <Timer />
+
       <DashBoardAdminHome />
     </div>
   );

@@ -8,7 +8,7 @@ const Timer = () => {
     <div>
       <div style={{ width: "100%" }}>
         <div style={{ fontSize: "40px" }}>
-          <span>{days}</span>:<span>{hours + 2}</span>:
+          <span>{days}</span>:<span>{hours + 22}</span>:
           <span>{minutes + 50}</span>:<span>{seconds}</span>
         </div>
         <p>{isRunning ? "Running" : "Not running"}</p>
@@ -19,6 +19,7 @@ const Timer = () => {
           Pause
         </button>
       </div>
+      <h1>hello</h1>
     </div>
   );
 };

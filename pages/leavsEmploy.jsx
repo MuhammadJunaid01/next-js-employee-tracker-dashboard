@@ -37,7 +37,7 @@ const leavsEmploy = () => {
    * server.
    */
   const handleApplyLeave = () => {
-    if (!employee) {
+    if (multipleDate === "" || reason === "") {
       return alert("vhvghv");
     }
     const data = {
@@ -48,7 +48,6 @@ const leavsEmploy = () => {
     console.log();
     applyLeave(data);
   };
-  console.log("aplly leave data from backend", data);
   return (
     <div>
       <LeaveCalendar
