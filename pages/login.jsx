@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useAddUserMutation } from "../redux/reducers/api/auth";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import loginLogo from "../public/apply-for-leave.gif";
+import loginLogo from "../public/loginLeafAnimi.gif";
 import Image from "next/image";
 import WelcomeLogo from "../public/loginAnimationFile.gif";
 import { Col, Row } from "antd";
@@ -51,6 +51,9 @@ const Login = () => {
         </Col>
         <Col xs={24} md={10}>
           <div className={styles.content}>
+            <div className={styles.logo}>
+              <Image src={loginLogo} height={90} width={90}></Image>
+            </div>
             <div className={styles.header}>
               <h2>Login</h2>
               <h5 style={{ color: "white", margin: "0px", padding: "0px" }}>

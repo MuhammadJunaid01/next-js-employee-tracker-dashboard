@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   height: 80vh;
-
+  position: relative;
   overflow: hidden;
 }
 .content {
@@ -14,7 +14,10 @@
   margin-top: 20px;
   position: relative;
 }
-
+.logo {
+  position: absolute !important;
+  top: 0px;
+}
 .header {
   text-align: center;
   margin-top: 10px;
