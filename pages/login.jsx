@@ -55,7 +55,7 @@ const Login = () => {
               <Image src={loginLogo} height={90} width={90}></Image>
             </div>
             <div className={styles.header}>
-              <h2>Login</h2>
+              <h2>Sign Up</h2>
               <h5 style={{ color: "white", margin: "0px", padding: "0px" }}>
                 Access to our dashboard
               </h5>
