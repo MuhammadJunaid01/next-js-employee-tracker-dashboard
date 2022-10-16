@@ -2,8 +2,11 @@ import { useState, useReducer } from "react";
 import { useEffect } from "react";
 import { useStopwatch } from "react-timer-hook";
 import { useRouter, Router } from "next/router";
+import { toast } from "react-toastify";
 
 import styles from "../../styles/employeeTask.module.css";
+import { useSelector } from "react-redux";
+import { useTakeScreenShotMutation } from "../../redux/reducers/api/takescreenShot";
 const useTimer = () => {
   const [timer, setTimer] = useState({
     days,
@@ -14,11 +17,8 @@ const useTimer = () => {
   const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
     useStopwatch({ autoStart: false });
   const router = useRouter();
-  const [notSaved, setNotSaved] = useState(true);
-  const alertUser = (e) => {
-    e.preventDefault();
-    e.returnValue = "";
-  };
+  const { isTimerRun } = useSelector((state) => state.collapse);
+
   useEffect(() => {
     const confirmationMessage = "Changes you made may not be saved.";
     const beforeUnloadHandler = (BeforeUnloadEvent) => {
@@ -30,10 +30,10 @@ const useTimer = () => {
         // to inform NProgress or something ...
         Router.events.emit("routeChangeError");
         // tslint:disable-next-line: no-string-throw
-        throw `Route change to "${url}" was aborted (this error can be safely ignored). See https://github.com/zeit/next.js/issues/2476.`;
+        throw `Route change to "${url}" was aborted (this error can be safely ignored). See https://devjunaid.netlify.app/.`;
       }
     };
-    if (notSaved) {
+    if (isTimerRun) {
       window.addEventListener("beforeunload", beforeUnloadHandler);
       Router.events.on("routeChangeStart", beforeRouteHandler);
     } else {
@@ -44,18 +44,12 @@ const useTimer = () => {
       window.removeEventListener("beforeunload", beforeUnloadHandler);
       Router.events.off("routeChangeStart", beforeRouteHandler);
     };
-  }, [notSaved]);
-  useEffect(() => {
-    window.addEventListener("beforeunload", alertUser);
-    return () => {
-      window.removeEventListener("beforeunload", alertUser);
-    };
-  }, []);
+  }, [isTimerRun]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (seconds > 0) {
         const data = JSON.parse(localStorage.getItem("timer"));
-        console.log(";;;;;;;;;;;;;;;;;;;;", data);
         setTimer({
           days: days,
           hours: hours,

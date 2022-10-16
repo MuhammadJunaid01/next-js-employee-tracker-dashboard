@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
-import { addTaskApi } from "../reducers/add-task/addTask";
-import { applyForLeave } from "../reducers/apply-for-leave";
-import userSlice, { authApi } from "../reducers/auth";
+import { addTaskApi } from "../reducers/api/add-task/addTask";
+import { applyForLeave } from "../reducers/api/apply-for-leave";
+import userSlice, { authApi } from "../reducers/api/auth";
 import collapseSlice from "../reducers/collapse/collapse";
-import task, { tasksApi } from "../reducers/project/project";
+import task, { tasksApi } from "../reducers/api/project/project";
+import { screenShotAPi } from "../reducers/api/takescreenShot";
 
 const makeStore = () => {
   return configureStore({
@@ -16,6 +17,7 @@ const makeStore = () => {
       [authApi.reducerPath]: authApi.reducer,
       [addTaskApi.reducerPath]: addTaskApi.reducer,
       [applyForLeave.reducerPath]: applyForLeave.reducer,
+      [screenShotAPi.reducerPath]: screenShotAPi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(authApi.middleware),

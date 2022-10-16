@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import AbsentEmployeeList from "../component/absentEmployee-list";
 import LeaveCalendar from "../component/leave-calendar/Index";
-import {
-  useApplyLeaveMutation,
-  useGetApplyEmployeeQuery,
-} from "../redux/reducers/apply-for-leave";
+import { useGetApplyEmployeeQuery } from "../redux/reducers/api/apply-for-leave";
 
 const leavsEmploy = () => {
   /* A hook that is used to call the mutation. */

@@ -57,25 +57,7 @@ const Index = ({ data }) => {
   const handleStart = (task) => {
     console.log(task);
   };
-  const handleToast = () => {
-    toast.warn("alert you are trackin.....", {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
-    console.log("calleddddddddddd");
-  };
-  useEffect(() => {
-    const MINUTE_MS = 300000;
-    const interval = setInterval(async () => {
-      handleToast();
-    }, MINUTE_MS);
-    return () => clearInterval(interval);
-  }, []);
+
   return (
     <div>
       <ToastContainer
